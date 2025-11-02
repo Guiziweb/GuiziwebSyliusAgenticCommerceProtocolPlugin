@@ -84,6 +84,7 @@
             "vendor/bin/console doctrine:database:drop --force --if-exists",
             "vendor/bin/console doctrine:database:create",
             "vendor/bin/console doctrine:migration:migrate -n",
+            "vendor/bin/console sylius:payment:generate-key",
             "vendor/bin/console sylius:fixtures:load -n"
         ],
         "frontend-clear": [

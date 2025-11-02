@@ -77,6 +77,9 @@ final class ACPContext implements Context
             'webhook_url' => 'https://chatgpt.test/webhooks/acp',
             'webhook_secret' => 'test_webhook_secret_456',
             'bearer_token' => 'test_bearer_token_123',
+            'psp_url' => 'https://psp.test',
+            'psp_merchant_secret_key' => 'test_psp_secret',
+            'psp_charge_endpoint' => '/charge',
         ];
 
         if ($withSignatureSecret) {

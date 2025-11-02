@@ -120,14 +120,6 @@ final class ACPContext implements Context
     {
         $response = $this->client->getResponse();
 
-        // Debug: print response if not 201
-        if ($response->getStatusCode() !== Response::HTTP_CREATED) {
-            echo "\n\n=== DEBUG RESPONSE ===\n";
-            echo 'Status: ' . $response->getStatusCode() . "\n";
-            echo 'Content: ' . $this->getResponseContent() . "\n";
-            echo "======================\n\n";
-        }
-
         Assert::same($response->getStatusCode(), Response::HTTP_CREATED);
 
         $content = $this->jsonDecode($this->getResponseContent());
