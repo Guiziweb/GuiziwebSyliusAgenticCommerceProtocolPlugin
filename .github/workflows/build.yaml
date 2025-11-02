@@ -143,6 +143,10 @@ jobs:
                 run: vendor/bin/console cache:warmup -vvv
 
             -
+                name: Generate payment encryption key
+                run: vendor/bin/console sylius:payment:generate-key
+
+            -
                 name: Load fixtures in test application
                 run: vendor/bin/console sylius:fixtures:load -n
 
