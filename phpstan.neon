@@ -17,3 +17,10 @@ parameters:
         - '/Parameter #1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension::processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
         -
             identifier: missingType.iterableValue
+        # Generic interface errors - ExampleFactoryInterface is generic on PHP 8.3+ but not on 8.2
+        - '/PHPDoc tag @implements contains generic type .* but interface .* is not generic\./'
+        - '/PHPDoc tag @param .* contains generic type .* but interface .* is not generic\./'
+        - '/PHPDoc type for property .* contains generic type .* but interface .* is not generic\./'
+        # Inverse: interface became generic in recent versions
+        - '/implements generic interface .* but does not specify its types/'
+        - '/has parameter .* with generic interface .* but does not specify its types/'
