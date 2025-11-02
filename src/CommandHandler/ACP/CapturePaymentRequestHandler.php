@@ -111,12 +111,12 @@ final readonly class CapturePaymentRequestHandler
                 throw new \RuntimeException(sprintf('PSP returned status %d: %s', $statusCode, $errorMessage));
             }
 
+            /** @var object{id: string, status: string, amount: int, currency: string, created: int}|null $paymentIntent */
             $paymentIntent = json_decode($content);
             if ($paymentIntent === null || !is_object($paymentIntent)) {
                 throw new \RuntimeException('Invalid JSON response from PSP');
             }
 
-            /** @var object{id: string, status: string, amount: int, currency: string, created: int} */
             return $paymentIntent;
         } catch (\Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface $e) {
             throw new \RuntimeException(sprintf('PSP request failed: %s', $e->getMessage()), 0, $e);
