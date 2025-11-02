@@ -1,0 +1,75 @@
+sylius_grid:
+    grids:
+        guiziweb_admin_acp_checkout_session:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Guiziweb\SyliusAgenticCommerceProtocolPlugin\Entity\ACPCheckoutSession
+                    repository:
+                        method: createQueryBuilder
+                        arguments: ['o']
+            sorting:
+                acpId: desc
+            fields:
+                acpId:
+                    type: string
+                    label: guiziweb.ui.acp_id
+                status:
+                    type: string
+                    label: guiziweb.ui.status
+                order:
+                    type: twig
+                    label: sylius.ui.order
+                    path: .
+                    options:
+                        template: "@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/acp_checkout_session/grid/field/order.html.twig"
+                orderState:
+                    type: string
+                    label: sylius.ui.state
+                    path: order.state
+                channel:
+                    type: twig
+                    label: sylius.ui.channel
+                    options:
+                        template: "@SyliusAdmin/shared/grid/field/channel.html.twig"
+                idempotencyKey:
+                    type: string
+                    label: guiziweb.ui.idempotency_key
+                lastRequestHash:
+                    type: string
+                    label: guiziweb.ui.last_request_hash
+            filters:
+                acpId:
+                    type: string
+                    label: guiziweb.ui.acp_id
+                status:
+                    type: select
+                    label: guiziweb.ui.status
+                    form_options:
+                        choices:
+                            guiziweb.ui.status_not_ready_for_payment: not_ready_for_payment
+                            guiziweb.ui.status_ready_for_payment: ready_for_payment
+                            guiziweb.ui.status_in_progress: in_progress
+                            guiziweb.ui.status_completed: completed
+                            guiziweb.ui.status_canceled: canceled
+                orderState:
+                    type: select
+                    label: sylius.ui.state
+                    form_options:
+                        choices:
+                            sylius.ui.cart: cart
+                            sylius.ui.new: new
+                            sylius.ui.fulfilled: fulfilled
+                            sylius.ui.cancelled: cancelled
+                    options:
+                        field: order.state
+                channel:
+                    type: ux_autocomplete
+                    label: sylius.ui.channel
+                    form_options:
+                        extra_options:
+                            class: "%sylius.model.channel.class%"
+                            choice_label: name
+                idempotencyKey:
+                    type: string
+                    label: guiziweb.ui.idempotency_key

@@ -1,0 +1,94 @@
+sylius_grid:
+    grids:
+        guiziweb_admin_product_feed_config:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: Guiziweb\SyliusAgenticCommerceProtocolPlugin\Entity\ProductFeedConfig
+                    repository:
+                        method: createQueryBuilder
+                        arguments: ['o']
+            sorting:
+                id: desc
+            fields:
+                id:
+                    type: string
+                    label: sylius.ui.id
+                channel:
+                    type: twig
+                    label: sylius.ui.channel
+                    options:
+                        template: "@SyliusAdmin/shared/grid/field/channel.html.twig"
+                feedEndpoint:
+                    type: string
+                    label: guiziweb.ui.feed_endpoint
+                feedBearerToken:
+                    type: string
+                    label: guiziweb.ui.feed_bearer_token
+                defaultBrand:
+                    type: string
+                    label: guiziweb.ui.default_brand
+                defaultWeight:
+                    type: string
+                    label: guiziweb.ui.default_weight
+                defaultMaterial:
+                    type: string
+                    label: guiziweb.ui.default_material
+                returnPolicyUrl:
+                    type: string
+                    label: guiziweb.ui.return_policy_url
+                returnWindowDays:
+                    type: string
+                    label: guiziweb.ui.return_window_days
+                privacyPolicyUrl:
+                    type: string
+                    label: guiziweb.ui.privacy_policy_url
+                termsOfServiceUrl:
+                    type: string
+                    label: guiziweb.ui.terms_of_service_url
+            filters:
+                channel:
+                    type: ux_autocomplete
+                    label: sylius.ui.channel
+                    form_options:
+                        extra_options:
+                            class: "%sylius.model.channel.class%"
+                            choice_label: name
+                feedEndpoint:
+                    type: string
+                    label: guiziweb.ui.feed_endpoint
+                feedBearerToken:
+                    type: string
+                    label: guiziweb.ui.feed_bearer_token
+                defaultBrand:
+                    type: string
+                    label: guiziweb.ui.default_brand
+                defaultWeight:
+                    type: string
+                    label: guiziweb.ui.default_weight
+                defaultMaterial:
+                    type: string
+                    label: guiziweb.ui.default_material
+                returnPolicyUrl:
+                    type: string
+                    label: guiziweb.ui.return_policy_url
+                returnWindowDays:
+                    type: string
+                    label: guiziweb.ui.return_window_days
+                privacyPolicyUrl:
+                    type: string
+                    label: guiziweb.ui.privacy_policy_url
+                termsOfServiceUrl:
+                    type: string
+                    label: guiziweb.ui.terms_of_service_url
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                    show:
+                        type: show

@@ -1,0 +1,24 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Guiziweb\SyliusAgenticCommerceProtocolPlugin\:
+        resource: '../src/'
+        exclude:
+            - '../src/Entity/'
+            - '../src/Migrations/'
+            - '../src/DependencyInjection/'
+            - '../src/Fixture/'
+            - '../src/Controller/'
+
+    Guiziweb\SyliusAgenticCommerceProtocolPlugin\Mapper\ACPFulfillmentMapper:
+        arguments:
+            $calculatorRegistry: '@sylius.registry.shipping_calculator'
+
+    Guiziweb\SyliusAgenticCommerceProtocolPlugin\Command\PushProductFeedCommand:
+        arguments:
+            $feedConfigRepository: '@guiziweb.repository.product_feed_config'
+
+imports:
+    - { resource: 'services/*.yaml' }

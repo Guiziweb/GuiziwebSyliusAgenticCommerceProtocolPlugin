@@ -1,0 +1,40 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.payment_method.create.content.form.sections.gateway_configuration.acp':
+            psp_url:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/psp_url.html.twig'
+                priority: 110
+            psp_merchant_secret_key:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/psp_merchant_secret_key.html.twig'
+                priority: 105
+            webhook_url:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/webhook_url.html.twig'
+                priority: 80
+            webhook_secret:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/webhook_secret.html.twig'
+                priority: 70
+            bearer_token:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/bearer_token.html.twig'
+                priority: 60
+            signature_secret:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/signature_secret.html.twig'
+                priority: 50
+        'sylius_admin.payment_method.update.content.form.sections.gateway_configuration.acp':
+            psp_url:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/psp_url.html.twig'
+                priority: 110
+            psp_merchant_secret_key:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/psp_merchant_secret_key.html.twig'
+                priority: 105
+            webhook_url:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/webhook_url.html.twig'
+                priority: 80
+            webhook_secret:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/webhook_secret.html.twig'
+                priority: 70
+            bearer_token:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/bearer_token.html.twig'
+                priority: 60
+            signature_secret:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/signature_secret.html.twig'
+                priority: 50

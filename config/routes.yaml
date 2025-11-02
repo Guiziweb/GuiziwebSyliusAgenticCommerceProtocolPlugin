@@ -1,0 +1,5 @@
+guiziweb_sylius_agentic_commerce_protocol_admin:
+    resource: "routes/admin.yaml"
+
+guiziweb_sylius_agentic_commerce_protocol_shop:
+    resource: "routes/shop.yaml"

@@ -1,0 +1,52 @@
+# Define your shop routes here
+
+# GET /acp/products - Get product catalog (for MCP server)
+# Note: Not part of official ACP spec, but required by MCP implementations
+guiziweb_acp_get_products:
+    path: /acp/products
+    methods: ['GET']
+    defaults:
+        _controller: Guiziweb\SyliusAgenticCommerceProtocolPlugin\Controller\GetProductsAction
+        # No _acp: true - public endpoint for MCP server
+
+# Spec: openapi.agentic_checkout.yaml
+
+# POST /acp/checkout_sessions - Create checkout session
+guiziweb_acp_create_checkout_session:
+    path: /acp/checkout_sessions
+    methods: ['POST']
+    defaults:
+        _controller: Guiziweb\SyliusAgenticCommerceProtocolPlugin\Controller\CreateCheckoutSessionAction
+        _acp: true
+
+# GET /acp/checkout_sessions/{checkoutSessionId} - Retrieve checkout session
+guiziweb_acp_get_checkout_session:
+    path: /acp/checkout_sessions/{checkoutSessionId}
+    methods: ['GET']
+    defaults:
+        _controller: Guiziweb\SyliusAgenticCommerceProtocolPlugin\Controller\GetCheckoutSessionAction
+        _acp: true
+
+# POST /acp/checkout_sessions/{checkoutSessionId} - Update checkout session
+guiziweb_acp_update_checkout_session:
+    path: /acp/checkout_sessions/{checkoutSessionId}
+    methods: ['POST']
+    defaults:
+        _controller: Guiziweb\SyliusAgenticCommerceProtocolPlugin\Controller\UpdateCheckoutSessionAction
+        _acp: true
+
+# POST /acp/checkout_sessions/{checkoutSessionId}/complete - Complete checkout session
+guiziweb_acp_complete_checkout_session:
+    path: /acp/checkout_sessions/{checkoutSessionId}/complete
+    methods: ['POST']
+    defaults:
+        _controller: Guiziweb\SyliusAgenticCommerceProtocolPlugin\Controller\CompleteCheckoutSessionAction
+        _acp: true
+
+# POST /acp/checkout_sessions/{checkoutSessionId}/cancel - Cancel checkout session
+guiziweb_acp_cancel_checkout_session:
+    path: /acp/checkout_sessions/{checkoutSessionId}/cancel
+    methods: ['POST']
+    defaults:
+        _controller: Guiziweb\SyliusAgenticCommerceProtocolPlugin\Controller\CancelCheckoutSessionAction
+        _acp: true

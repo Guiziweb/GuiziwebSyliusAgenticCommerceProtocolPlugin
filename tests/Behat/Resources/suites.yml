@@ -1,0 +1,3 @@
+imports:
+    - suites/api/acp.yml
+    - suites/cli/push_product_feed.yml

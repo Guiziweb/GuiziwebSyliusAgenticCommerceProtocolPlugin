@@ -1,0 +1,52 @@
+services:
+    # ACP API Controllers
+    Guiziweb\SyliusAgenticCommerceProtocolPlugin\Controller\:
+        resource: '../../src/Controller/'
+        autowire: true
+        autoconfigure: true
+        public: true
+        tags: ['controller.service_arguments']
+
+    # CompleteCheckoutSessionAction - inject event bus
+    Guiziweb\SyliusAgenticCommerceProtocolPlugin\Controller\CompleteCheckoutSessionAction:
+        autowire: true
+        public: true
+        tags: ['controller.service_arguments']
+        arguments:
+            $eventBus: '@sylius.event_bus'
+
+    # ACP Payment Request - Command Providers (2-level pattern like Sylius Offline)
+    # Level 1: Main dispatcher for gateway "acp"
+    guiziweb.command_provider.payment_request.acp:
+        class: Sylius\Bundle\PaymentBundle\CommandProvider\ActionsCommandProvider
+        arguments:
+            - !tagged_locator { tag: 'guiziweb.command_provider.payment_request.acp', index_by: 'action' }
+        tags:
+            - { name: sylius.payment_request.command_provider, gateway_factory: acp }
+
+    # Level 2: Capture action provider
+    guiziweb.command_provider.payment_request.acp.capture:
+        class: Guiziweb\SyliusAgenticCommerceProtocolPlugin\CommandProvider\ACP\CapturePaymentRequestCommandProvider
+        tags:
+            - { name: guiziweb.command_provider.payment_request.acp, action: capture }
+
+    # ACP Gateway Configuration Form
+    Guiziweb\SyliusAgenticCommerceProtocolPlugin\Form\Type\ACPGatewayConfigurationType:
+        tags:
+            - name: sylius.gateway_configuration_type
+              type: acp
+              label: 'guiziweb.gateway_factory.acp'
+            - name: form.type
+
+    # ACP Event Handlers
+    Guiziweb\SyliusAgenticCommerceProtocolPlugin\EventHandler\ACPOrderCompletedHandler:
+        tags:
+            - { name: messenger.message_handler, bus: sylius.event_bus }
+
+    # ACP Payment Methods Resolver Decorator
+    # Filters out ACP payment methods (acp_*) from the normal shop checkout flow
+    # Pattern: Symfony Decorator Pattern
+    Guiziweb\SyliusAgenticCommerceProtocolPlugin\Resolver\ACPPaymentMethodsResolverDecorator:
+        decorates: 'sylius.resolver.payment_methods.channel_based'
+        arguments:
+            $decorated: '@.inner'

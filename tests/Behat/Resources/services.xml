@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="true" />
+
+        <!-- ACP API Behat Context -->
+        <service id="Tests\Guiziweb\SyliusAgenticCommerceProtocolPlugin\Behat\Context\Api\ACPContext">
+            <argument type="service" id="test.client" />
+            <argument type="service" id="sylius.behat.shared_storage" />
+            <tag name="fob.context_service" />
+        </service>
+
+        <!-- ACP Setup Behat Context -->
+        <service id="Tests\Guiziweb\SyliusAgenticCommerceProtocolPlugin\Behat\Context\Setup\ACPContext">
+            <argument type="service" id="sylius.behat.shared_storage" />
+            <argument type="service" id="sylius.repository.payment_method" />
+            <argument type="service" id="sylius.fixture.example_factory.payment_method" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <tag name="fob.context_service" />
+        </service>
+
+        <!-- Product Feed Setup Behat Context -->
+        <service id="Tests\Guiziweb\SyliusAgenticCommerceProtocolPlugin\Behat\Context\Setup\ProductFeedContext">
+            <argument type="service" id="sylius.behat.shared_storage" />
+            <argument type="service" id="guiziweb.factory.product_feed_config" />
+            <argument type="service" id="guiziweb.repository.product_feed_config" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <tag name="fob.context_service" />
+        </service>
+
+        <!-- Product Feed CLI Behat Context -->
+        <service id="Tests\Guiziweb\SyliusAgenticCommerceProtocolPlugin\Behat\Context\Cli\PushProductFeedContext">
+            <argument type="service" id="kernel" />
+            <tag name="fob.context_service" />
+        </service>
+
+        <!-- Fake Stripe Handler for Tests -->
+        <service id="Guiziweb\SyliusAgenticCommerceProtocolPlugin\CommandHandler\ACP\CapturePaymentRequestHandler"
+                 class="Tests\Guiziweb\SyliusAgenticCommerceProtocolPlugin\CommandHandler\ACP\FakeCapturePaymentRequestHandler"
+                 autoconfigure="true">
+            <argument type="service" id="sylius.provider.payment_request" />
+            <argument type="service" id="sylius_abstraction.state_machine" />
+        </service>
+    </services>
+
+</container>

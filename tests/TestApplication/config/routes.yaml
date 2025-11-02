@@ -1,0 +1,2 @@
+guiziweb_sylius_agentic_commerce_protocol:
+    resource: "@GuiziwebSyliusAgenticCommerceProtocolPlugin/config/routes.yaml"

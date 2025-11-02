@@ -1,0 +1,7 @@
+{% if data.order and data.order.number %}
+    <a class="fw-medium" href="{{ path('sylius_admin_order_show', {'id': data.order.id}) }}" data-bs-toggle="tooltip" data-bs-title="{{ 'sylius.ui.show_order_details'|trans }}">#{{ data.order.number }}</a>
+{% elseif data.order %}
+    <span class="text-muted">ID: {{ data.order.id }}</span>
+{% else %}
+    <span class="text-muted">-</span>
+{% endif %}

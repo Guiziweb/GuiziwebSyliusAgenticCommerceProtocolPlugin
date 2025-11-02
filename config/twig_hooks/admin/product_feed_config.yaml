@@ -1,0 +1,53 @@
+sylius_twig_hooks:
+    hooks:
+        'sylius_admin.product_feed_config.show.content.header.title_block':
+            actions:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/header/title_block/actions.html.twig'
+                priority: 0
+
+        'sylius_admin.product_feed_config.show.content.header.title_block.actions':
+            edit:
+                template: '@SyliusAdmin/shared/crud/show/content/header/title_block/actions/edit.html.twig'
+                priority: 0
+
+        'sylius_admin.product_feed_config.show.content':
+            sections:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections.html.twig'
+                priority: 0
+
+        'sylius_admin.product_feed_config.show.content.sections':
+            general:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general.html.twig'
+                priority: 0
+
+        'sylius_admin.product_feed_config.show.content.sections.general':
+            channel:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/channel.html.twig'
+                priority: 1000
+            feed_endpoint:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/feed_endpoint.html.twig'
+                priority: 900
+            feed_bearer_token:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/feed_bearer_token.html.twig'
+                priority: 800
+            default_brand:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/default_brand.html.twig'
+                priority: 700
+            default_weight:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/default_weight.html.twig'
+                priority: 600
+            default_material:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/default_material.html.twig'
+                priority: 500
+            return_policy_url:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/return_policy_url.html.twig'
+                priority: 400
+            return_window_days:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/return_window_days.html.twig'
+                priority: 300
+            privacy_policy_url:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/privacy_policy_url.html.twig'
+                priority: 200
+            terms_of_service_url:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/product_feed_config/show/content/sections/general/terms_of_service_url.html.twig'
+                priority: 100

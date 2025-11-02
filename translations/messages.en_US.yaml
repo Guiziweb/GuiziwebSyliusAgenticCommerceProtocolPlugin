@@ -1,0 +1,70 @@
+guiziweb:
+    ui:
+        acp_menu: ACP
+        acp_configurations: ACP Configurations
+        acp_checkout_sessions: Checkout Sessions
+        product_feed_configs: Product Feed Configurations
+        product_feed_config: Product Feed Configuration
+        code: Code
+        acp_id: ACP ID
+        idempotency_key: Idempotency Key
+        last_request_hash: Last Request Hash
+        status: Status
+        feed_endpoint: Feed Endpoint
+        feed_bearer_token: Feed Bearer Token
+        default_brand: Default Brand
+        default_weight: Default Weight
+        default_material: Default Material
+        return_policy_url: Return Policy URL
+        return_window_days: Return Window (Days)
+        privacy_policy_url: Privacy Policy URL
+        terms_of_service_url: Terms of Service URL
+        status_not_ready_for_payment: Not Ready for Payment
+        status_ready_for_payment: Ready for Payment
+        status_in_progress: In Progress
+        status_completed: Completed
+        status_canceled: Canceled
+
+    gateway_factory:
+        acp: ACP
+
+    form:
+        acp_configuration:
+            code: Code
+            code_placeholder: acp_config_default
+            channel: Channel
+            enabled: Enabled
+            bearer_token: Bearer Token
+            bearer_token_placeholder: Bearer token for ChatGPT authentication
+            bearer_token_help: This token will be used by ChatGPT to authenticate API requests
+            webhook_url: Webhook URL
+            webhook_url_help: URL where order events will be sent (ChatGPT webhook endpoint)
+            webhook_secret: Webhook Secret
+            webhook_secret_placeholder: Secret for HMAC signature
+            webhook_secret_help: Used to sign webhooks sent to ChatGPT
+            stripe_secret_key: Stripe Secret Key
+            stripe_secret_key_help: Your Stripe secret key (sk_live_xxx or sk_test_xxx)
+            stripe_account_id: Stripe Account ID (optional)
+            stripe_account_id_placeholder: acct_xxx
+            stripe_account_id_help: Optional Stripe Connect account ID for multi-merchant platforms
+            require_signature: Require Request Signature
+            require_signature_help: If enabled, all incoming requests must be signed with ChatGPT's public key
+            chatgpt_public_key: ChatGPT Public Key
+            chatgpt_public_key_placeholder: |-
+                -----BEGIN PUBLIC KEY-----
+                ...
+                -----END PUBLIC KEY-----
+            chatgpt_public_key_help: RSA public key provided by OpenAI for request signature verification
+        acp_gateway:
+            psp_url: PSP URL
+            psp_url_help: URL of your Payment Service Provider
+            psp_merchant_secret_key: PSP Merchant Secret Key
+            psp_merchant_secret_key_help: Your merchant secret key for PSP authentication
+            webhook_url: ChatGPT Webhook URL
+            webhook_url_help: URL where order events will be sent (provided by OpenAI)
+            webhook_secret: Webhook Secret
+            webhook_secret_help: Secret for HMAC signature of webhooks
+            bearer_token: Bearer Token
+            bearer_token_help: Token for authenticating requests from ChatGPT
+            signature_secret: Signature Secret (optional)
+            signature_secret_help: Shared secret for HMAC signature verification of incoming requests
