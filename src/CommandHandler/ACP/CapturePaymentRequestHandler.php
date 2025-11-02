@@ -44,7 +44,7 @@ final readonly class CapturePaymentRequestHandler
      * @param string $currency Currency code (lowercase)
      * @param string|null $signatureSecret Shared secret for HMAC signature
      *
-     * @return object Payment intent object with id, status, amount, currency, created
+     * @return object{id: string, status: string, amount: int, currency: string, created: int} Payment intent object
      *
      * @throws \RuntimeException on PSP error
      */
@@ -109,12 +109,12 @@ final readonly class CapturePaymentRequestHandler
                 throw new \RuntimeException(sprintf('PSP returned status %d: %s', $statusCode, $errorMessage));
             }
 
-            /** @var object|null $paymentIntent */
             $paymentIntent = json_decode($content);
-            if ($paymentIntent === null) {
+            if ($paymentIntent === null || !is_object($paymentIntent)) {
                 throw new \RuntimeException('Invalid JSON response from PSP');
             }
 
+            /** @var object{id: string, status: string, amount: int, currency: string, created: int} */
             return $paymentIntent;
         } catch (\Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface $e) {
             throw new \RuntimeException(sprintf('PSP request failed: %s', $e->getMessage()), 0, $e);
