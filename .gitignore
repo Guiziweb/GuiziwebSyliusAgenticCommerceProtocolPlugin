@@ -2,6 +2,7 @@
 /var/
 /node_modules/
 /composer.lock
+/public/
 
 /etc/build/*
 !/etc/build/.gitignore
