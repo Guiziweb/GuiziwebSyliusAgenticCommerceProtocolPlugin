@@ -7,6 +7,9 @@ sylius_twig_hooks:
             psp_merchant_secret_key:
                 template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/psp_merchant_secret_key.html.twig'
                 priority: 105
+            psp_charge_endpoint:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/psp_charge_endpoint.html.twig'
+                priority: 100
             webhook_url:
                 template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/webhook_url.html.twig'
                 priority: 80
@@ -26,6 +29,9 @@ sylius_twig_hooks:
             psp_merchant_secret_key:
                 template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/psp_merchant_secret_key.html.twig'
                 priority: 105
+            psp_charge_endpoint:
+                template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/psp_charge_endpoint.html.twig'
+                priority: 100
             webhook_url:
                 template: '@GuiziwebSyliusAgenticCommerceProtocolPlugin/admin/payment_method/form/webhook_url.html.twig'
                 priority: 80

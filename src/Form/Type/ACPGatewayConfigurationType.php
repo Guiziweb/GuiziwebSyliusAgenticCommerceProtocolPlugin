@@ -43,6 +43,18 @@ final class ACPGatewayConfigurationType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('psp_charge_endpoint', TextType::class, [
+                'label' => 'guiziweb.form.acp_gateway.psp_charge_endpoint',
+                'help' => 'guiziweb.form.acp_gateway.psp_charge_endpoint_help',
+                'constraints' => [
+                    new NotBlank([
+                        'groups' => ['sylius'],
+                    ]),
+                ],
+                'attr' => [
+                    'placeholder' => '/agentic_commerce/create_and_process_payment_intent',
+                ],
+            ])
 
             ->add('webhook_url', UrlType::class, [
                 'label' => 'guiziweb.form.acp_gateway.webhook_url',

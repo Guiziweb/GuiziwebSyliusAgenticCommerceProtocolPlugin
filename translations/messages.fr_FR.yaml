@@ -60,6 +60,8 @@ guiziweb:
             psp_url_help: URL de votre fournisseur de service de paiement
             psp_merchant_secret_key: Clé secrète marchand PSP
             psp_merchant_secret_key_help: Votre clé secrète marchand pour l'authentification PSP
+            psp_charge_endpoint: Endpoint de paiement PSP
+            psp_charge_endpoint_help: "Chemin de l'endpoint API pour charger les tokens de paiement (ex : /agentic_commerce/create_and_process_payment_intent)"
             webhook_url: URL du Webhook ChatGPT
             webhook_url_help: URL où les événements de commande seront envoyés (fournie par OpenAI)
             webhook_secret: Secret du Webhook

@@ -38,6 +38,7 @@ final readonly class CapturePaymentRequestHandler
      * Charge vault token via PSP
      *
      * @param string $pspUrl PSP base URL (e.g., http://localhost:4000)
+     * @param string $pspChargeEndpoint PSP charge endpoint path (e.g., /agentic_commerce/create_and_process_payment_intent)
      * @param string $merchantSecretKey Merchant secret key for authentication
      * @param string $vaultToken Vault token (vt_xxx)
      * @param int $amount Amount in cents
@@ -50,13 +51,14 @@ final readonly class CapturePaymentRequestHandler
      */
     private function chargeViaPSP(
         string $pspUrl,
+        string $pspChargeEndpoint,
         string $merchantSecretKey,
         string $vaultToken,
         int $amount,
         string $currency,
         ?string $signatureSecret,
     ): object {
-        $endpoint = rtrim($pspUrl, '/') . '/agentic_commerce/create_and_process_payment_intent';
+        $endpoint = rtrim($pspUrl, '/') . '/' . ltrim($pspChargeEndpoint, '/');
 
         $requestBody = [
             'shared_payment_token' => $vaultToken,
@@ -165,6 +167,7 @@ final readonly class CapturePaymentRequestHandler
         $config = $gatewayConfig->getConfig();
         $pspUrl = $config['psp_url'] ?? null;
         $pspMerchantSecretKey = $config['psp_merchant_secret_key'] ?? null;
+        $pspChargeEndpoint = $config['psp_charge_endpoint'] ?? null;
 
         if (!is_string($pspUrl) || $pspUrl === '') {
             throw new \InvalidArgumentException('PSP URL not configured');
@@ -172,6 +175,10 @@ final readonly class CapturePaymentRequestHandler
 
         if (!is_string($pspMerchantSecretKey) || $pspMerchantSecretKey === '') {
             throw new \InvalidArgumentException('PSP merchant secret key not configured');
+        }
+
+        if (!is_string($pspChargeEndpoint) || $pspChargeEndpoint === '') {
+            throw new \InvalidArgumentException('PSP charge endpoint not configured');
         }
 
         $amount = $payment->getAmount();
@@ -192,6 +199,7 @@ final readonly class CapturePaymentRequestHandler
         try {
             $charge = $this->chargeViaPSP(
                 $pspUrl,
+                $pspChargeEndpoint,
                 $pspMerchantSecretKey,
                 $token,
                 $amount,

@@ -22,11 +22,11 @@ use Webmozart\Assert\Assert;
  */
 final class ACPContext implements Context
 {
-    private const string ACP_API_VERSION = '2025-09-29';
+    private const ACP_API_VERSION = '2025-09-29';
 
-    private const string BEARER_TOKEN = 'test_bearer_token_123';
+    private const BEARER_TOKEN = 'test_bearer_token_123';
 
-    private const string SIGNATURE_SECRET = 'test_signature_secret';
+    private const SIGNATURE_SECRET = 'test_signature_secret';
 
     public function __construct(
         private KernelBrowser $client,

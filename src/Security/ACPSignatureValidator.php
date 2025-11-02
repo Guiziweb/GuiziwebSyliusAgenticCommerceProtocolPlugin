@@ -17,7 +17,7 @@ namespace Guiziweb\SyliusAgenticCommerceProtocolPlugin\Security;
  */
 final class ACPSignatureValidator
 {
-    private const int TIMESTAMP_TOLERANCE_SECONDS = 300; // 5 minutes
+    private const TIMESTAMP_TOLERANCE_SECONDS = 300; // 5 minutes
 
     /**
      * Verify request signature using shared secret
