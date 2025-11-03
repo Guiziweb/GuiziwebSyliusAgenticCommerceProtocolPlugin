@@ -25,7 +25,7 @@ final class Version20251102074944 extends AbstractMigration
         $this->skipIf(
             !$this->connection->getDatabasePlatform() instanceof MySQLPlatform &&
             !$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform,
-            'Migration can only be executed safely on \'mysql\' or \'postgresql\'.'
+            'Migration can only be executed safely on \'mysql\' or \'postgresql\'.',
         );
 
         $this->addSql('CREATE TABLE guiziweb_acp_product_feed_config (id INT NOT NULL, channel_id INT NOT NULL, feed_endpoint VARCHAR(255) DEFAULT NULL, feed_bearer_token VARCHAR(255) DEFAULT NULL, default_brand VARCHAR(255) DEFAULT NULL, default_weight VARCHAR(50) DEFAULT NULL, default_material VARCHAR(255) DEFAULT NULL, return_policy_url VARCHAR(255) DEFAULT NULL, return_window_days INT DEFAULT NULL, privacy_policy_url VARCHAR(255) DEFAULT NULL, terms_of_service_url VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');

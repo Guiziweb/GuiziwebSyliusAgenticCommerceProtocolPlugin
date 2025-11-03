@@ -25,7 +25,7 @@ final class Version20251025114956 extends AbstractMigration
         $this->skipIf(
             !$this->connection->getDatabasePlatform() instanceof MySQLPlatform &&
             !$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform,
-            'Migration can only be executed safely on \'mysql\' or \'postgresql\'.'
+            'Migration can only be executed safely on \'mysql\' or \'postgresql\'.',
         );
 
         $this->addSql('CREATE TABLE guiziweb_acp_checkout_session (id INT NOT NULL, order_id INT NOT NULL, channel_id INT NOT NULL, acp_id VARCHAR(255) NOT NULL, status VARCHAR(50) NOT NULL, idempotency_key VARCHAR(255) DEFAULT NULL, last_request_hash VARCHAR(64) DEFAULT NULL, PRIMARY KEY(id))');
