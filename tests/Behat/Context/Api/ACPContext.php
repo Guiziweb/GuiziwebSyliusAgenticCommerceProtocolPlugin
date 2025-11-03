@@ -135,7 +135,6 @@ final class ACPContext implements Context
      */
     public function checkoutSessionStatusShouldBe(string $status): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::same($content['status'], $status);
@@ -146,7 +145,6 @@ final class ACPContext implements Context
      */
     public function checkoutSessionShouldHaveItems(int $count): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'line_items');
@@ -158,7 +156,6 @@ final class ACPContext implements Context
      */
     public function responseShouldContainBuyerEmail(string $email): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'buyer_data');
@@ -171,7 +168,6 @@ final class ACPContext implements Context
      */
     public function responseShouldContainTotalAmount(): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'totals');
@@ -413,14 +409,6 @@ final class ACPContext implements Context
     {
         $response = $this->client->getResponse();
 
-        // Debug: print response if not 200
-        if ($response->getStatusCode() !== Response::HTTP_OK) {
-            echo "\n\n=== DEBUG RESPONSE ===\n";
-            echo 'Status: ' . $response->getStatusCode() . "\n";
-            echo 'Content: ' . $this->getResponseContent() . "\n";
-            echo "======================\n\n";
-        }
-
         Assert::same($response->getStatusCode(), Response::HTTP_OK);
     }
 
@@ -453,7 +441,6 @@ final class ACPContext implements Context
      */
     public function responseShouldContainShippingAddress(): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'fulfillment_address');
@@ -628,14 +615,6 @@ final class ACPContext implements Context
     {
         $response = $this->client->getResponse();
 
-        // Debug: print response if not 401
-        if ($response->getStatusCode() !== Response::HTTP_UNAUTHORIZED) {
-            echo "\n\n=== DEBUG RESPONSE ===\n";
-            echo 'Status: ' . $response->getStatusCode() . "\n";
-            echo 'Content: ' . $this->getResponseContent() . "\n";
-            echo "======================\n\n";
-        }
-
         Assert::same($response->getStatusCode(), Response::HTTP_UNAUTHORIZED);
     }
 
@@ -644,7 +623,6 @@ final class ACPContext implements Context
      */
     public function theErrorCodeShouldBe(string $code): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'code');
@@ -656,7 +634,6 @@ final class ACPContext implements Context
      */
     public function theErrorMessageShouldContain(string $message): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'message');
@@ -697,7 +674,6 @@ final class ACPContext implements Context
      */
     public function iSaveTheSessionId(): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'id');
@@ -709,7 +685,6 @@ final class ACPContext implements Context
      */
     public function theSessionIdShouldBeTheSameAsSaved(): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'id');
@@ -751,17 +726,7 @@ final class ACPContext implements Context
      */
     public function iShouldReceiveConflictError(): void
     {
-        $response = $this->client->getResponse();
-
-        // Debug: print response if not 409
-        if ($response->getStatusCode() !== Response::HTTP_CONFLICT) {
-            echo "\n\n=== DEBUG RESPONSE ===\n";
-            echo 'Status: ' . $response->getStatusCode() . "\n";
-            echo 'Content: ' . $this->getResponseContent() . "\n";
-            echo "======================\n\n";
-        }
-
-        Assert::same($response->getStatusCode(), Response::HTTP_CONFLICT);
+        Assert::same($this->client->getResponse()->getStatusCode(), Response::HTTP_CONFLICT);
     }
 
     /**
@@ -925,7 +890,6 @@ final class ACPContext implements Context
      */
     public function responseShouldContainOrderObject(): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         // Per ACP spec Section 4.4: Complete response MUST include order object
@@ -962,7 +926,6 @@ final class ACPContext implements Context
      */
     public function theErrorParamShouldBe(string $param): void
     {
-        $response = $this->client->getResponse();
         $content = $this->jsonDecode($this->getResponseContent());
 
         Assert::keyExists($content, 'param', 'Error response must contain param field (RFC 9535 JSONPath)');
