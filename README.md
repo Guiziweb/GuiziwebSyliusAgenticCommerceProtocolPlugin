@@ -75,42 +75,46 @@ This plugin acts as a **bridge** between OpenAI's ACP protocol and Sylius's e-co
 
 ## Installation
 
-### 1. Install via Composer
+### Quick Installation (Recommended)
+
+The plugin uses **Symfony Flex** for automatic configuration:
 
 ```bash
 composer require guiziweb/sylius-agentic-commerce-protocol-plugin
 ```
 
-### 2. Enable the Bundle
+This will automatically:
+- Register the bundle in `config/bundles.php`
+- Create configuration file in `config/packages/guiziweb_sylius_agentic_commerce_protocol.yaml`
+- Create routes file in `config/routes/guiziweb_sylius_agentic_commerce_protocol.yaml`
 
-The bundle should be automatically registered via Symfony Flex. If not, add it manually to `config/bundles.php`:
+### Configuration Requirements
 
-```php
-return [
-    // ... other bundles
-    Guiziweb\SyliusAgenticCommerceProtocolPlugin\GuiziwebSyliusAgenticCommerceProtocolPlugin::class => ['all' => true],
-];
+To enable Symfony Flex recipes from this repository, add the custom recipe endpoint to your `composer.json`:
+
+```json
+{
+    "extra": {
+        "symfony": {
+            "allow-contrib": true,
+            "endpoint": [
+                "https://api.github.com/repos/Guiziweb/SyliusRecipes/contents/index.json?ref=flex/main",
+                "https://api.github.com/repos/Sylius/SyliusRecipes/contents/index.json?ref=flex/main",
+                "flex://defaults"
+            ]
+        }
+    }
+}
 ```
 
-### 3. Import Routes
+**Note:** You also need to set `"minimum-stability": "dev"` and `"prefer-stable": true` in your `composer.json` until a stable release is tagged.
 
-Create `config/routes/guiziweb_sylius_acp.yaml`:
+### Post-Installation
 
-```yaml
-guiziweb_sylius_acp:
-    resource: "@GuiziwebSyliusAgenticCommerceProtocolPlugin/config/routes.yaml"
-```
-
-### 4. Run Database Migrations
+After installation, run the database migrations:
 
 ```bash
 php bin/console doctrine:migrations:migrate -n
-```
-
-### 5. Install and Build Assets
-
-```bash
-php bin/console assets:install
 ```
 
 ## Configuration
