@@ -11,6 +11,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Fixture/'
             - '../src/Controller/'
+            - '../src/Form/Type/ACPGatewayConfigurationType.php'
 
     Guiziweb\SyliusAgenticCommerceProtocolPlugin\Mapper\ACPFulfillmentMapper:
         arguments:
